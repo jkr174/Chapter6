@@ -23,6 +23,8 @@ namespace WindowsFormsApp1
         SqlDataAdapter phoneAdapter;
         DataTable phoneTable;
         CurrencyManager phoneManager;
+        string myState;
+        int myBookmark;
         public frmPhoneDB()
         {
             InitializeComponent();
@@ -140,6 +142,7 @@ namespace WindowsFormsApp1
         }
         private void SetState(string appState)
         {
+            myState = appState;
             switch (appState)
             {
                 case "View":
@@ -151,6 +154,7 @@ namespace WindowsFormsApp1
                     btnConnect.Enabled = false;
                     btnSave.Enabled = false;
                     btnCancel.Enabled = false;
+                    btnAdd.Enabled = true;
                     txtID.BackColor = Color.White;
                     txtID.ForeColor = Color.Black;
                     txtName.ReadOnly = true;
@@ -165,6 +169,7 @@ namespace WindowsFormsApp1
                     btnConnect.Enabled = false;
                     btnSave.Enabled = true;
                     btnCancel.Enabled = true;
+                    btnAdd.Enabled = false;
                     txtID.BackColor = Color.Red;
                     txtID.ForeColor = Color.White;
                     txtName.ReadOnly = false;
@@ -190,7 +195,16 @@ namespace WindowsFormsApp1
         private void btnCancel_Click(object sender, EventArgs e)
         {
             phoneManager.CancelCurrentEdit();
+            if (myState.Equals("Add"))
+                phoneManager.Position = myBookmark;
             SetState("View");
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            myBookmark = phoneManager.Position;
+            SetState("Add");
+            phoneManager.AddNew();
         }
     }
 }
