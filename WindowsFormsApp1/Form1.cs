@@ -181,7 +181,10 @@ namespace WindowsFormsApp1
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            phoneManager.EndCurrentEdit();
+            phoneTable.DefaultView.Sort = "ContactName";
             SetState("View");
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
