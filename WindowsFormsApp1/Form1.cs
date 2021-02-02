@@ -32,7 +32,7 @@ namespace WindowsFormsApp1
 
         private void frmPhoneDB_Load(object sender, EventArgs e)
         {
-            
+            SetState("Connect");
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
@@ -145,6 +145,19 @@ namespace WindowsFormsApp1
             myState = appState;
             switch (appState)
             {
+                case "Connect":
+                    btnFirst.Enabled = false;
+                    btnPrevious.Enabled = false;
+                    btnNext.Enabled = false;
+                    btnLast.Enabled = false;
+                    btnEdit.Enabled = false;
+                    btnConnect.Enabled = true;
+                    btnSave.Enabled = false;
+                    btnCancel.Enabled = false;
+                    btnAdd.Enabled = false;
+                    txtName.ReadOnly = false;
+                    txtNumber.ReadOnly = false;
+                    break;
                 case "View":
                     btnFirst.Enabled = true;
                     btnPrevious.Enabled = true;
