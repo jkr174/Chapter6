@@ -58,11 +58,10 @@ namespace WindowsFormsApp1
                     {
                         fileContent = reader.ReadToEnd();
                     }
-                    phoneConnection = new SqlConnection("Data Source=.\\SQLEXPRESS;" +
+                    phoneConnection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;" +
                         "AttachDbFilename=" + filePath + ";" +
                         "Integrated Security=True;" +
-                        "Connect Timeout=30;" +
-                        "User Instance=True");
+                        "Connect Timeout=30;");
                     phoneConnection.Open();
 
                     phoneCommand = new SqlCommand("SELECT * " +
