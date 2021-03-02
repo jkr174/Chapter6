@@ -17,3 +17,4 @@ C:\Users\romo1\OneDrive\Documents\GitHub\TitlesBranch3\Chapter6\WindowsFormsApp1
 C:\Users\romo1\OneDrive\Documents\GitHub\TitlesBranch3\Chapter6\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
 C:\Users\romo1\OneDrive\Documents\GitHub\TitlesBranch3\Chapter6\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\romo1\OneDrive\Documents\GitHub\TitlesBranch3\Chapter6\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\jromo021627\Documents\GitHub\Chapter6\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
