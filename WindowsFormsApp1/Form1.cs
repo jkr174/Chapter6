@@ -101,25 +101,35 @@ namespace WindowsFormsApp1
 
         private void frmPhoneDB_FormClosing(object sender, FormClosingEventArgs e)
         {
-            try
+            if (myState.Equals("Edit") || myState.Equals("Add"))
             {
-                SqlCommandBuilder phoneAdapterCommands = new SqlCommandBuilder(phoneAdapter);
-                phoneAdapter.Update(phoneTable);
+                MessageBox.Show("You must finish the current edit before stopping the application.", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                e.Cancel = true;
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Error saving database to file:\r\n" +
-                    ex.Message,
-                    "Save Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-            phoneConnection.Close();
+                try
+                {
+                    SqlCommandBuilder phoneAdapterCommands = new SqlCommandBuilder(phoneAdapter);
+                    phoneAdapter.Update(phoneTable);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error saving database to file:\r\n" +
+                        ex.Message,
+                        "Save Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                phoneConnection.Close();
 
-            phoneConnection.Dispose();
-            phoneCommand.Dispose();
-            phoneAdapter.Dispose();
-            phoneTable.Dispose();
+                phoneConnection.Dispose();
+                phoneCommand.Dispose();
+                phoneAdapter.Dispose();
+                phoneTable.Dispose();
+            }
+            
         }
 
         private void btnFirst_Click(object sender, EventArgs e)
@@ -157,8 +167,10 @@ namespace WindowsFormsApp1
                     btnCancel.Enabled = false;
                     btnAdd.Enabled = false;
                     btnDelete.Enabled = false;
+                    btnDone.Enabled = false;
                     txtName.ReadOnly = false;
                     txtNumber.ReadOnly = false;
+
                     break;
                 case "View":
                     btnFirst.Enabled = true;
@@ -171,6 +183,7 @@ namespace WindowsFormsApp1
                     btnCancel.Enabled = false;
                     btnAdd.Enabled = true;
                     btnDelete.Enabled = true;
+                    btnDone.Enabled = true;
                     txtID.BackColor = Color.White;
                     txtID.ForeColor = Color.Black;
                     txtName.ReadOnly = true;
@@ -187,6 +200,7 @@ namespace WindowsFormsApp1
                     btnCancel.Enabled = true;
                     btnAdd.Enabled = false;
                     btnDelete.Enabled = false;
+                    btnDone.Enabled = false;
                     txtID.BackColor = Color.Red;
                     txtID.ForeColor = Color.White;
                     txtName.ReadOnly = false;
@@ -234,6 +248,11 @@ namespace WindowsFormsApp1
                 == DialogResult.Yes)
                 phoneManager.RemoveAt(phoneManager.Position);
             SetState("View");
+        }
+
+        private void btnDone_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
